@@ -1,0 +1,14 @@
+[
+	{
+		"name": "desktop",
+		"size": {"width": 1920, "height": 1080}
+	},
+	{
+		"name": "tablet",
+		"size": {"width": 1024, "height": 768}
+	},
+	{
+		"name": "phone",
+		"size": {"width": 480, "height": 640}
+	}
+]

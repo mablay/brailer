@@ -1,0 +1,7 @@
+.DS_STORAGE
+node_modules
+img/**/*.jpg
+config/localstorage
+config/cookies.json
+config/cookies.txt
+config/sites-local.json
