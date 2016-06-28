@@ -1,4 +1,4 @@
-.DS_STORAGE
+.DS_Store
 node_modules
 img/**/*.jpg
 config/localstorage
