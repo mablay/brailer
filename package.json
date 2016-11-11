@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "phantom": "^2.1.7",
+    "promise": "^7.1.1",
     "queue": "^4.0.0"
   }
 }

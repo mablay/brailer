@@ -1,6 +1,6 @@
 var phantom = require('phantom');
 var queue = require('queue');
-
+var Promise = require('promise');
 
 var phPage = null;
 var phInstance = null;
@@ -9,6 +9,9 @@ var q = queue({
     concurrency: 1,
     timeout: 30 * 1000
 });
+
+var waitBeforeScreenshot = 1000; // miliseconds
+//var waitBeforeScreenshot = false; // miliseconds
 
 // Load instructions into the queue
 var screens = require('./config/screens.json');
@@ -20,7 +23,19 @@ require('./config/sites.json').forEach(function(site){
             .then(status => {
                 phPage.evaluate(function() {
                     window.document.body.scrollTop = document.body.scrollHeight;
-                })                
+                });
+                return null;
+            })
+            .then(() => {
+                if (!waitBeforeScreenshot) return null;
+                console.log('[WAIT] %dms to complete async calls', waitBeforeScreenshot);
+                var p = new Promise((resolve, reject)=>{
+                    setTimeout(()=>{
+                        console.log('[WAIT] proceed');
+                        resolve();
+                    }, 2000);
+                });
+                return p;
             })
             .then(() => {
                 console.log('rendering %s for %s', site.name, screen.name);
@@ -50,7 +65,6 @@ phantom.create([
     phPage = page;
 
     // Page setup
-    //page.setting('javascriptEnabled', true);
     page.property('javascriptEnabled', true);
 
     /**
