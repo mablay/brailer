@@ -33,7 +33,7 @@ require('./config/sites.json').forEach(function(site){
                     setTimeout(()=>{
                         console.log('[WAIT] proceed');
                         resolve();
-                    }, 2000);
+                    }, waitBeforeScreenshot);
                 });
                 return p;
             })
